@@ -1,0 +1,4 @@
+1) Task: Create a Docker Network
+    Solution:
+    1. docker network create -d bridge --subnet=10.10.1.0/24 --ip-range=10.10.1.0/24 official
+    2. and you can check it with docker inspect official

@@ -23,7 +23,7 @@ My solutions
 5) Task: Write a Docker File
     Solution:
     1. Create a Dockerfile at required location
-    2. Write these to Docker file
+    2. Write these to Dockerfile
         # Start with the Ubuntu base image
         FROM ubuntu
 
@@ -44,3 +44,4 @@ My solutions
     3. docker build -t myapp .
     4. docker run -it myapp
     5. Test it at docker host with curl http://IP_ADDRESS:3000
+
