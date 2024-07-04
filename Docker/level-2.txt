@@ -4,12 +4,12 @@ My solutions
 
 2) ---
 
-3) Create a Docker Image From Container
+3) Task: Create a Docker Image From Container
     Solution:
     1. docker ps (get running container name)
     2) docker commit container_name new_image_name
 
-4) Docker EXEC Operations
+4) Task: Docker EXEC Operations
     Solution:
     1. docker exec -it kkloud /bin/bash
     2. apt install apach2 vim -y
@@ -19,3 +19,28 @@ My solutions
     6. vim /etc/apache2/ports.conf and change port number to 5001
     7. service apache2 restart
     8. test it on container curl http://127.0.0.1:5001 or at docker host with curl http://IP_ADDRESS:5001 (containers IP)
+
+5) Task: Write a Docker File
+    Solution:
+    1. Create a Dockerfile at required location
+    2. Write these to Docker file
+        # Start with the Ubuntu base image
+        FROM ubuntu
+
+        # Prevent interactive prompts during package installation
+        ENV DEBIAN_FRONTEND=noninteractive
+
+        # Update the package list and install apache2
+        RUN apt-get update && apt-get install -y apache2
+
+        # Change the default Apache port to 3000
+        RUN sed -i 's/Listen 80/Listen 3000/' /etc/apache2/ports.conf
+
+        # add "ServerName localhost" at the end of file
+        RUN sed -i '$a ServerName localhost' /etc/apache2/apache2.conf
+
+        # Start Apache in the foreground
+        CMD ["apachectl", "-D", "FOREGROUND"]
+    3. docker build -t myapp .
+    4. docker run -it myapp
+    5. Test it at docker host with curl http://IP_ADDRESS:3000
