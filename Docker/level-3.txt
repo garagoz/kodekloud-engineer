@@ -5,7 +5,7 @@
 
 2) Task: Docker Volumes Mapping
     Solution:
-    1. ssh into astapp02
+    1. ssh into stapp02
     2. docker pull nginx:latest
     3. cp /tmp/sample.txt /opt/sysops/
     4. docker run --name news -v /opt/sysops/:/usr/src/ -d nginx
@@ -23,3 +23,19 @@
     3. scp media.tar banner@stapp03:/tmp/
     4. ssh into stapp03
     5. docker load < /tmp/media.tar
+
+5) Task: Write a Docker Compose File
+    Solution:
+    1. ssh into stapp02
+    2. create docker-compose.yml file at /opt/docker/
+    3. copy this into that file
+        version: '3.8'
+
+        services:
+          httpd:
+            image: httpd:latest
+            container_name: httpd
+            ports:
+              - "5002:80"
+            volumes:
+              - /opt/data:/usr/local/apache2/htdocs
