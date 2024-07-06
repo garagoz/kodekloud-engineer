@@ -15,3 +15,11 @@
     1. ssh into stapp03
     2. docker pull nginx:stable
     3. docker run --name demo -p 6200:80 nginx:stable
+
+4) Task: Save, Load and Transfer Docker Image
+    Solution:
+    1. ssh into stapp01
+    2. docker save media:datacenter > media.tar
+    3. scp media.tar banner@stapp03:/tmp/
+    4. ssh into stapp03
+    5. docker load < /tmp/media.tar
