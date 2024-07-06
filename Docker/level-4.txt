@@ -1,0 +1,10 @@
+
+1) Task: Resolve Dockerfile Issues
+    Solution:
+    1. ssh into stapp01
+    2. there is a Dockerfile at location /opt/docker
+    3. build it, so you can see what was the errors
+    4. the error -> the path shown incorrect of certification and index.html files
+    5. fix the those files path
+    6. docker build .
+    7. that is it all :)
