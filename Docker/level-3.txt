@@ -5,7 +5,13 @@
 
 2) Task: Docker Volumes Mapping
     Solution:
-    1. ssh into app server 2
+    1. ssh into astapp02
     2. docker pull nginx:latest
     3. cp /tmp/sample.txt /opt/sysops/
     4. docker run --name news -v /opt/sysops/:/usr/src/ -d nginx
+
+3) Task: Docker Port Mapping
+    Solution:
+    1. ssh into stapp03
+    2. docker pull nginx:stable
+    3. docker run --name demo -p 6200:80 nginx:stable
