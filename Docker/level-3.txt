@@ -2,3 +2,10 @@
     Solution:
     1. docker network create -d bridge --subnet=10.10.1.0/24 --ip-range=10.10.1.0/24 official
     2. and you can check it with docker inspect official
+
+2) Task: Docker Volumes Mapping
+    Solution:
+    1. ssh into app server 2
+    2. docker pull nginx:latest
+    3. cp /tmp/sample.txt /opt/sysops/
+    4. docker run --name news -v /opt/sysops/:/usr/src/ -d nginx
