@@ -8,3 +8,29 @@
     5. fix the those files path
     6. docker build .
     7. that is it all :)
+
+
+2) Task: Resolve Docker Compose Issues
+    Solution:
+    1. ssh into stapp03
+    2. there is a docker-compose.yml file at /opt/docker location
+    3. This file have errors, we must be fixed it
+    4. first "depends" must be "depends_on"
+    5. second at redis section: change "build" to "image"
+    6. and that is it all
+    7.
+        name: myapp
+
+        services:
+          web:
+            build: ./app
+            container_name: python
+            ports:
+              - '5000:5000'
+            volumes:
+              - './app:/code'
+            depends_on:
+              - redis
+          redis:
+            image: redis
+            container_name: redis
