@@ -71,7 +71,7 @@
 #-------------------------------------------------------------------------------------
 4) Task: Docker Node App
     Solution:
-    1. We need to create Dockerfile
+    1. We need to create a Dockerfile
     2. ssh into desired app server
     3. go to shown app directory
     4. create a Dockerfile and paste below
@@ -86,4 +86,25 @@
     5. docker build -t nautilus/node-web-app .
     6. docker run --name nodeapp_nautilus -p 8095:3000 -d nautilus/node-web-app
     7. curl http://localhost:8095, you will see like this "Welcome to xFusionCorp Industries!"
+
+#-------------------------------------------------------------------------------------
+5) Task: Docker Python App
+    Solution:
+    1. We need to create a Dockerfile
+    2. ssh into desired spp server
+    4. go to shown app directory
+    5. Create a Dockerfile and paste it below
+
+        FROM python:3.18
+        WORKDIR /usr/src/app
+        COPY src/requirements.txt .
+        RUN pip install -r requirements.txt
+        COPY . .
+        EXPOSE 3004
+        CMD ["python3", "server.py"]
+    6. docker build -t nautilus/python-web-app .
+    7. docker run --name pythonapp_nautilus -p 8095:3004 -d nautilus/python-web-app
+    8. curl http://localhost:8095, you will see like this "Welcome to xFusionCorp Industries!"
+
+
 
