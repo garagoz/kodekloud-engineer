@@ -34,3 +34,35 @@
           redis:
             image: redis
             container_name: redis
+
+3) Task: Deploy an App on Docker Containers
+    Solution:
+    1. We need to create docker-compose.yml file
+    2. At the end result should be like this: curl http://127.0.0.1:3004 -> Welcome to xFusionCorp Industries!
+    3. The docker-compose.yml file
+        version: "3.8"
+
+        services:
+          web:
+            image: php:7.2-apache
+            container_name: php_apache
+            ports:
+              - "3004:80"
+            volumes:
+              - "/var/www/html:/var/www/html"
+
+          DB:
+            image: mariadb
+            container_name: mysql_apache
+            restart: always
+            environment:
+              MARIADB_DATABASE: database_apache
+              MARIADB_USER: admin
+              MARIADB_PASSWORD: admin123
+              MARIADB_ALLOW_EMPTY_ROOT_PASSWORD: 1
+              #MARIADB_ROOT_PASSWORD: admin
+
+            ports:
+              - "3306:3306"
+            volumes:
+              - "/var/lib/mysql:/var/lib/mysql"
