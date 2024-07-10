@@ -1,4 +1,4 @@
-
+#-------------------------------------------------------------------------------------
 1) Task: Resolve Dockerfile Issues
     Solution:
     1. ssh into stapp01
@@ -9,7 +9,7 @@
     6. docker build .
     7. that is it all :)
 
-
+#-------------------------------------------------------------------------------------
 2) Task: Resolve Docker Compose Issues
     Solution:
     1. ssh into stapp03
@@ -35,6 +35,7 @@
             image: redis
             container_name: redis
 
+#-------------------------------------------------------------------------------------
 3) Task: Deploy an App on Docker Containers
     Solution:
     1. We need to create docker-compose.yml file
@@ -66,3 +67,23 @@
               - "3306:3306"
             volumes:
               - "/var/lib/mysql:/var/lib/mysql"
+
+#-------------------------------------------------------------------------------------
+4) Task: Docker Node App
+    Solution:
+    1. We need to create Dockerfile
+    2. ssh into desired app server
+    3. go to shown app directory
+    4. create a Dockerfile and paste below
+        FROM node:latest
+        WORKDIR /usr/src/app
+        COPY package*.json .
+        RUN npm install
+        COPY . .
+        EXPOSE 3000
+        CMD ["node", "server.js"]
+
+    5. docker build -t nautilus/node-web-app .
+    6. docker run --name nodeapp_nautilus -p 8095:3000 -d nautilus/node-web-app
+    7. curl http://localhost:8095, you will see like this "Welcome to xFusionCorp Industries!"
+
