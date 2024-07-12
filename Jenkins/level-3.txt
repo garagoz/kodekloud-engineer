@@ -1,7 +1,21 @@
-Task: aaa
+1) Task: Jenkins Slave Nodes
     Solution:
     1. go to jenkins UI
     2. Add SSH Build agents and restart jenkins
     3. Manage Jenkins -> Credentials > Global -> add credential tony, steve and banner with their password
     4. Manage Jenkins -> Nodes -> add node -> provide name, remote root directory and select launch method. Provide ssh server credentials and its user,
       select manually trusted key verification strategy
+
+#-------------------------------------------------------------------------------------
+2) Task: Jenkins Project Security
+    Solution:
+    1. go to jenkins UI
+    2. install these plugins Role-based Authorization and Matrix Authorization Strategy
+    3. Restart jenkins
+    4. go to Jobs and right click on Package job and select configure
+    5. Enable project-based security
+    6. Add users sam and rohan
+    7. For user sam -> select Overall:read, Job: build, configure
+    8. For user rohan -> select Overall:read, Job: build, configure, cancel, Run: update
+    9. save
+
