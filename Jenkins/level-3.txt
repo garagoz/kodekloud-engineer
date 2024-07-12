@@ -1,0 +1,7 @@
+Task: aaa
+    Solution:
+    1. go to jenkins UI
+    2. Add SSH Build agents and restart jenkins
+    3. Manage Jenkins -> Credentials > Global -> add credential tony, steve and banner with their password
+    4. Manage Jenkins -> Nodes -> add node -> provide name, remote root directory and select launch method. Provide ssh server credentials and its user,
+      select manually trusted key verification strategy
