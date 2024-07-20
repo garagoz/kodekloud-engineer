@@ -19,3 +19,35 @@
     8. For user rohan -> select Overall:read, Job: build, configure, cancel, Run: update
     9. save
 
+#-------------------------------------------------------------------------------------
+3) Task: Jenkins Build Images
+    Solution:
+    1. go to jenkins UI
+    2. install these plugins ssh build agent, pipeline
+    3. add credentials using desired host credential (example stapp01 ant its user password)
+    4. add node agent (set root directory /home/steve for host stapp02, ssh launch use above credential)
+    5. Create job named nginx-container (use pipeline)
+    6. and paste this script to pipeline script field
+       pipeline {
+           agent {
+               label 'stapp02'
+           }
+
+           stages {
+               stage('Build') {
+                   steps {
+                       git url: 'http://git.stratos.xfusioncorp.com/sarah/web.git', branch: 'master'
+                       sh 'docker build -t stregi01.stratos.xfusioncorp.com:5000/nginx:latest .'
+                       sh 'docker tag stregi01.stratos.xfusioncorp.com:5000/nginx:latest nginx:latest'
+                       sh 'docker push stregi01.stratos.xfusioncorp.com:5000/nginx:latest'
+                   }
+               }
+           }
+       }
+
+    7. Build this job
+    8. and that is it all, enjoy your life
+
+
+
+
