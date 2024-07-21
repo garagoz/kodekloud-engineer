@@ -1,0 +1,26 @@
+1) Task: Jenkins Deploy Pipeline
+    Solution:
+    1. go to jenkins UI
+    2. install these plugins ssh build agent, pipeline
+    3. add credentials using desired host credential (example ststor01 ant its user password)
+    4. add node agent (set root directory /var/www/html for host ststor01, ssh launch use above credential)
+    5. Create job (use pipeline)
+    6. Poll SCM -> * * * * * (this trigger when git commit occurs)
+    6. and paste this script to pipeline script field
+        pipeline {
+            agent {
+                label 'ststor01'
+            }
+
+            stages {
+                stage('Deploy') {
+                    steps {
+                        git url: 'http://git.stratos.xfusioncorp.com/sarah/web.git', branch: 'master'
+                        sh 'cp -f /var/www/html/workspace/nautilus-app-deployment/* /var/www/html/'
+                    }
+                }
+            }
+        }
+
+    7. Build this job
+    8. and that is it all, enjoy your life
