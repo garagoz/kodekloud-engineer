@@ -1,12 +1,13 @@
-1) Task: Jenkins Deploy Pipeline
+1) Task: Jenkins Deployment Job
     Solution:
-    1. go to jenkins UI
-    2. install these plugins ssh build agent, pipeline
-    3. add credentials using desired host credential (example ststor01 ant its user password)
-    4. add node agent (set root directory /var/www/html for host ststor01, ssh launch use above credential)
-    5. Create job (use pipeline)
-    6. Poll SCM -> * * * * * (this trigger when git commit occurs)
-    6. and paste this script to pipeline script field
+    1. Install all App server httpd, and configire it to listen 8080 port
+    2. go to jenkins UI
+    3. install these plugins ssh build agent, pipeline
+    4. add credentials using desired host credential (example ststor01 ant its user password)
+    5. add node agent (set root directory /var/www/html for host ststor01, ssh launch use above credential, dont forget it "chmod 0777 /var/www/html")
+    6. Create job (use pipeline)
+    7. Poll SCM -> * * * * * (this trigger when git commit occurs)
+    8. and paste this script to pipeline script field
         pipeline {
             agent {
                 label 'ststor01'
@@ -22,5 +23,7 @@
             }
         }
 
-    7. Build this job
-    8. and that is it all, enjoy your life
+    9. Build this job (see if it succesfully build)
+    10. ssh into storage server with sarah credentials, there under sarah home directory clone git repository
+    11. Modify index.html and push it git repository
+    12. and that is it all, enjoy your life
